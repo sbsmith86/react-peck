@@ -2,46 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const MapContainer = () => {
-    const [positionLoaded, setPositionLoaded] = useState(false);
-    const [position, setPosition] = useState({});
-
-    const getPositionSuccess = (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        setPosition({ latitude, longitude });
-        setPositionLoaded(true);
-    }
-
-    const getPositionError = () => console.log("Unable to retrieve your location");
-
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getPositionSuccess, getPositionError);
-          } else {
-            console.log("Geolocation not supported");
-          }
-    }, []);
-
     const mapStyles = {
         height: "600px",
         width: "100%"
     };
 
+    // Default to SF
     const defaultCenter = {
-        lat: position.latitude, lng: position.longitude
+        lat: 37.773972,
+        lng: -122.431297
     }
     // Key should be in env variable
     return (
         <div>
-            {positionLoaded ? (
-                <LoadScript googleMapsApiKey='AIzaSyCHaBrH4J2JxZtLO840VNEkM3jF-1QWJ1s'>
-                    <GoogleMap
-                        mapContainerStyle={mapStyles}
-                        zoom={13}
-                        center={defaultCenter}
-                    />
-                </LoadScript>
-            ) : <p>Map Loading...</p>}
+            <LoadScript googleMapsApiKey='AIzaSyCHaBrH4J2JxZtLO840VNEkM3jF-1QWJ1s'>
+                <GoogleMap
+                    mapContainerStyle={mapStyles}
+                    zoom={13}
+                    center={defaultCenter}
+                />
+            </LoadScript>
         </div>
     )
 }
