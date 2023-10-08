@@ -30,7 +30,7 @@ const MapContainer = () => {
     const defaultCenter = {
         lat: position.latitude, lng: position.longitude
     }
-
+    // Key should be in env variable
     return (
         <div>
             {positionLoaded ? (
