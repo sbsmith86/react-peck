@@ -9,12 +9,21 @@ const SearchForm = ({validateLocation, showValidationError, setShowValidationErr
     return /^\d{5}(-\d{4})?$/.test(str);
   }
 
+  const getFoodTrucks = (zip) => {
+    console.log("search by zip")
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (isUSAZipCode(formData.zipCode)) {
       validateLocation(formData.zipCode);
-      setShowValidationError(false);
+      // setShowValidationError(false);
+
+      // if (showValidationError) {
+      //   getFoodTrucks(formData.zipCode);
+      // }
+
     } else {
       setShowValidationError("Please enter a valid zip code.");
     }
