@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import MapContainer from "./MapContainer";
 
 export default function Main(props) {
   return (
     <div>
       <div className="flex justify-center">
-        <p className="my-12">Enter your zip code to find a food truck near you</p>
+        <p className="my-6">Enter your zip code to find a food truck near you</p>
       </div>
       <div className="flex justify-center py-4">
         <form className="w-full max-w-sm">
@@ -17,7 +18,7 @@ export default function Main(props) {
         </form>
       </div>
       <div className="bg-blue-100">
-        <p className="my-12">map here</p>
+        <MapContainer />
       </div>
     </div>
   );
