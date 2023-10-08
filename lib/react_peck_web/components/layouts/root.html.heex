@@ -11,13 +11,14 @@
 
   </head>
   <body class="bg-white antialiased">
-<main class="px-4 py-20 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-2xl">
-    <.flash_group flash={@flash} />
-    <!-- <%= @inner_content %> -->
-    <div id="root"></div>
-  </div>
-</main>
+    <main class="px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 bg-white shadow p-4"><code class="bg-gray-100">Peck Assignment</code></header>
+      <div class="mx-auto max-w-2xl">
+        <.flash_group flash={@flash} />
+        <!-- <%= @inner_content %> -->
+        <div id="root"></div>
+      </div>
+    </main>
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </body>
