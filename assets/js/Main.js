@@ -9,7 +9,7 @@ export default function Main(props) {
 
   const getCity = (response) => response.address_components[1];
 
-  const handleSearch = (zipCodeVal) => {
+  const validateLocation = (zipCodeVal) => {
     axios.post('api/getlocation', {
       zipCode: zipCodeVal,
       }).then(response => {
@@ -31,7 +31,7 @@ export default function Main(props) {
       </div>
       <div className="flex justify-center py-4">
         <SearchForm
-          handleSearch={handleSearch}
+          validateLocation={validateLocation}
           setShowValidationError={setShowValidationError}
           showValidationError={showValidationError}
         />

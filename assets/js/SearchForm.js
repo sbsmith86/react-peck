@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchForm = ({handleSearch, showValidationError, setShowValidationError}) => {
+const SearchForm = ({validateLocation, showValidationError, setShowValidationError}) => {
   const [formData, setFormData] = useState({
     zipCode: "",
   });
@@ -13,7 +13,7 @@ const SearchForm = ({handleSearch, showValidationError, setShowValidationError})
     e.preventDefault();
 
     if (isUSAZipCode(formData.zipCode)) {
-      handleSearch(formData.zipCode);
+      validateLocation(formData.zipCode);
       setShowValidationError(false);
     } else {
       setShowValidationError("Please enter a valid zip code.");
