@@ -9,12 +9,11 @@ export default function Main(props) {
   const handleSearch = (zipCodeVal) => {
     console.log(zipCodeVal);
 
-    axios.post('api/foodtrucks')
-      .then(response => {
+    axios.post('api/foodtrucks', {
+      zipCode: zipCodeVal,
+    }).then(response => {
         console.log(response);
-      })
-
-      .catch(error => {
+      }).catch(error => {
         console.error(error);
       });
   };
