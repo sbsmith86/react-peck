@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 
-const SearchForm = ({handleSearch}) => {
+const SearchForm = ({handleSearch, showValidationError, setShowValidationError}) => {
   const [formData, setFormData] = useState({
     zipCode: "",
   });
-
-  const [showValidationError, setShowValidationError] = useState(false);
 
   const isUSAZipCode = (str) => {
     return /^\d{5}(-\d{4})?$/.test(str);
@@ -18,7 +16,7 @@ const SearchForm = ({handleSearch}) => {
       handleSearch(formData.zipCode);
       setShowValidationError(false);
     } else {
-      setShowValidationError(true);
+      setShowValidationError("Please enter a valid zip code.");
     }
   }
 
@@ -28,7 +26,7 @@ const SearchForm = ({handleSearch}) => {
         <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" value={formData.zipCode} onChange={(e) => setFormData({...formData, zipCode: e.target.value})} type="text" name="zipcode" id="zipcode" />
         <input type="submit" className="flex-shrink-0 bg-gray-500 hover:bg-gray-700 border-gray-500 hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded" value="Submit" />
       </div>
-      {showValidationError && (<p className='text-red-500'>Please enter a valid zip code.</p>) }
+      {showValidationError && (<p className='text-red-500'>{showValidationError}</p>) }
     </form>
   )
 }

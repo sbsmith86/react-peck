@@ -26,6 +26,7 @@ defmodule ReactPeckWeb.Router do
   scope "/api", ReactPeckWeb do
     pipe_through :api
     post "/foodtrucks", FoodTruckController, :search
+    post "/getlocation", FoodTruckController, :getlocation
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
