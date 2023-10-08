@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import SearchForm from "./SearchForm";
+import axios from 'axios';
 
 export default function Main(props) {
   // const [zipCode, setZipCode] = useState("");
 
   const handleSearch = (zipCodeVal) => {
     console.log(zipCodeVal);
-  }
+
+    axios.post('api/foodtrucks')
+      .then(response => {
+        console.log(response);
+      })
+
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
     <div>

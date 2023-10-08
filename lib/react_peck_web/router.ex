@@ -20,10 +20,13 @@ defmodule ReactPeckWeb.Router do
     get "/", PageController, :home
   end
 
+
   # Other scopes may use custom stacks.
-  # scope "/api", ReactPeckWeb do
-  #   pipe_through :api
-  # end
+
+  scope "/api", ReactPeckWeb do
+    pipe_through :api
+    post "/foodtrucks", FoodTruckController, :search
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:react_peck, :dev_routes) do
