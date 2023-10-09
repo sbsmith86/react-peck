@@ -49,7 +49,6 @@ const SearchForm = ({
         setSearchResults(truckresults);
       } else {
         setShowValidationError("We can only search in San Francisco");
-        console.log("not valid");
       }
 
     } else {
