@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const SearchResults = ({searchResults}) => {
+    const [noResultsMsg, setNoResultsMsge] = useState("No results yet. Try search a larger radius.")
+
     const mapStyles = {
         height: "600px",
         width: "100%"
@@ -26,7 +28,6 @@ const SearchResults = ({searchResults}) => {
     }
 
     return (
-
         <div>
             {searchResults.length ? (
                 searchResults.map((truck) => {
@@ -49,7 +50,7 @@ const SearchResults = ({searchResults}) => {
                         </div>
                     )
                 })
-            ) : <div>No results.</div>}
+            ) : <div>{noResultsMsg}</div>}
 
         </div>
     )
