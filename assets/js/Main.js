@@ -7,8 +7,6 @@ export default function Main(props) {
   const [showValidationError, setShowValidationError] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const getCity = (response) => response.address_components[1];
-
   const validateLocation = async (zipCodeVal) => {
     setShowValidationError("");
 
