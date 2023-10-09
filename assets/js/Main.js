@@ -16,7 +16,7 @@ export default function Main(props) {
       zipCode: zipCodeVal,
       });
 
-    return result;
+    return JSON.parse(result.data).results[0];
   };
 
   return (

@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const SearchForm = ({validateLocation, showValidationError, setShowValidationError}) => {
   const [formData, setFormData] = useState({
     zipCode: "",
   });
 
+  const [searchResults, setSearchResults] = useState([]);
+
   const isUSAZipCode = (str) => {
     return /^\d{5}(-\d{4})?$/.test(str);
   }
 
-  const getFoodTrucks = (zip) => {
-    console.log("search by zip")
+  const getLatAndLong = (locationResponse) => {
+
+    return {
+      lat: locationResponse.geometry.location.lat,
+      lng: locationResponse.geometry.location.lng
+    }
+  }
+
+  const handleSearch = async (coordinates) => {
+    const response = await axios.post('api/foodtrucks', {
+      lat: coordinates.lat,
+      lng: coordinates.lng
+    });
+
+    return JSON.parse(response.data);
   }
 
   const getCity = (data) => data.address_components[1].short_name;
@@ -20,11 +36,12 @@ const SearchForm = ({validateLocation, showValidationError, setShowValidationErr
 
     if (isUSAZipCode(formData.zipCode)) {
       const response = await validateLocation(formData.zipCode);
+      const coordinates = getLatAndLong(response);
 
-
-      if (getCity(JSON.parse(response.data).results[0]) === "SF") {
+      if (getCity(response) === "SF") {
         setShowValidationError("");
-        console.log("valid. perform search");
+        const truckresults = await handleSearch(coordinates);
+        console.log(truckresults);
       } else {
         setShowValidationError("We can only search in San Francisco");
         console.log("not valid");
