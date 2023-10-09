@@ -5,7 +5,7 @@ defmodule ReactPeckWeb.FoodTruckController do
     lat = params["lat"]
     lng = params["lng"]
 
-    case HTTPoison.get("https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,#{lat},#{lng},1000)") do
+    case HTTPoison.get("https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,#{lat},#{lng},10000)") do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         json(conn, body)
       {:ok, %HTTPoison.Response{status_code: 404}} ->

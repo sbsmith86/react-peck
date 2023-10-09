@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SearchForm = ({validateLocation, showValidationError, setShowValidationError}) => {
+const SearchForm = ({
+  validateLocation,
+  showValidationError,
+  setShowValidationError,
+  setSearchResults
+}) => {
   const [formData, setFormData] = useState({
     zipCode: "",
   });
-
-  const [searchResults, setSearchResults] = useState([]);
 
   const isUSAZipCode = (str) => {
     return /^\d{5}(-\d{4})?$/.test(str);
@@ -41,7 +44,7 @@ const SearchForm = ({validateLocation, showValidationError, setShowValidationErr
       if (getCity(response) === "SF") {
         setShowValidationError("");
         const truckresults = await handleSearch(coordinates);
-        console.log(truckresults);
+        setSearchResults(truckresults);
       } else {
         setShowValidationError("We can only search in San Francisco");
         console.log("not valid");

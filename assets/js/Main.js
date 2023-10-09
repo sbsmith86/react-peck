@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
+import SearchResults from "./SearchResults";
 import SearchForm from "./SearchForm";
 import axios from 'axios';
 
 export default function Main(props) {
-  const [city, setCity] = useState("");
   const [showValidationError, setShowValidationError] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const getCity = (response) => response.address_components[1];
 
@@ -22,7 +23,6 @@ export default function Main(props) {
   return (
     <div>
       <div className="flex justify-center my-8">
-        {/* @TODO - Header Component */}
         <h3 className="text-3xl font-bold">Enter your zip code to find a food truck near you</h3>
       </div>
       <div className="flex justify-center py-4">
@@ -30,10 +30,11 @@ export default function Main(props) {
           validateLocation={validateLocation}
           setShowValidationError={setShowValidationError}
           showValidationError={showValidationError}
+          setSearchResults={setSearchResults}
         />
       </div>
-      <div className="bg-blue-100">
-        <MapContainer />
+      <div>
+        <SearchResults searchResults={searchResults} />
       </div>
     </div>
   );

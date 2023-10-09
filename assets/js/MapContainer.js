@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 
-const MapContainer = () => {
+const MapContainer = ({searchResults}) => {
+    // console.log("map container", searchResults);
     const mapStyles = {
         height: "600px",
         width: "100%"
@@ -20,7 +21,15 @@ const MapContainer = () => {
                     mapContainerStyle={mapStyles}
                     zoom={13}
                     center={defaultCenter}
-                />
+                >
+                    <Marker position={{ lat: 37.773972, lng: -122.431297 }} />
+                    {console.log("render map", searchResults)}
+                    {searchResults.map((truck) => console.log(truck))}
+
+                    {searchResults.map((truck) => <Marker key={truck.objectid} position={{ lat: parseInt(truck.location.latitude), lng: parseInt(truck.location.longitude) }} />)}
+
+{/* 37.7890° N, 122.3915° W */}
+                </GoogleMap>
             </LoadScript>
         </div>
     )
