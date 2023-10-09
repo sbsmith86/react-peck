@@ -69,7 +69,7 @@ const SearchForm = ({
       </div>
 
 
-      <p className="text-sm mb-2">Select the radius you would like to search in:</p>
+      <p className="text-sm mb-2">Select the mile radius you would like to search in:</p>
       <div className="relative w-64 mb-4">
         <select onChange={handleRadiusSelect}  className="block appearance-none w-full border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 leading-tight focus:outline-none focus:shadow-outline">
           <option>50</option>

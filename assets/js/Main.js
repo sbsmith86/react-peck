@@ -22,7 +22,7 @@ export default function Main(props) {
   return (
     <div>
       <div className="flex justify-center my-8">
-        <h3 className="text-3xl font-bold">Enter your zip code to find a food truck near you</h3>
+        <h3 className="text-2xl font-bold">Enter your SF zip code to find a food truck near you.</h3>
       </div>
       <div className="flex justify-center py-4">
         <SearchForm
