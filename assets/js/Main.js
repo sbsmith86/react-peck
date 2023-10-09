@@ -9,21 +9,14 @@ export default function Main(props) {
 
   const getCity = (response) => response.address_components[1];
 
-  const validateLocation = (zipCodeVal) => {
-
+  const validateLocation = async (zipCodeVal) => {
     setShowValidationError("");
-    axios.post('api/getlocation', {
+
+    const result = await axios.post('api/getlocation', {
       zipCode: zipCodeVal,
-      }).then(response => {
-        if (getCity(JSON.parse(response.data).results[0]).short_name !== "SF") {
-          setShowValidationError("We can only search in San Francisco");
-        } else {
-          setShowValidationError("");
-          setCity("SF")
-        }
-      }).catch(error => {
-        console.error(error);
-    });
+      });
+
+    return result;
   };
 
   return (

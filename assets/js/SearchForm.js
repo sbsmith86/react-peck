@@ -13,16 +13,22 @@ const SearchForm = ({validateLocation, showValidationError, setShowValidationErr
     console.log("search by zip")
   }
 
-  const handleSubmit = (e) => {
+  const getCity = (data) => data.address_components[1].short_name;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isUSAZipCode(formData.zipCode)) {
-      validateLocation(formData.zipCode);
-      // setShowValidationError(false);
+      const response = await validateLocation(formData.zipCode);
 
-      // if (showValidationError) {
-      //   getFoodTrucks(formData.zipCode);
-      // }
+
+      if (getCity(JSON.parse(response.data).results[0]) === "SF") {
+        setShowValidationError("");
+        console.log("valid. perform search");
+      } else {
+        setShowValidationError("We can only search in San Francisco");
+        console.log("not valid");
+      }
 
     } else {
       setShowValidationError("Please enter a valid zip code.");
