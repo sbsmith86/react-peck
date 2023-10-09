@@ -4,8 +4,11 @@ defmodule ReactPeckWeb.FoodTruckController do
   def search(conn, params) do
     lat = params["lat"]
     lng = params["lng"]
+    radius = params["radius"]
 
-    case HTTPoison.get("https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,#{lat},#{lng},10000)") do
+    IO.puts radius
+
+    case HTTPoison.get("https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,#{lat},#{lng},#{radius})") do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         json(conn, body)
       {:ok, %HTTPoison.Response{status_code: 404}} ->

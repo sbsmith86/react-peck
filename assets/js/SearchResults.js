@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const SearchResults = ({searchResults}) => {
-    console.log(searchResults);
     const mapStyles = {
         height: "600px",
         width: "100%"
@@ -27,27 +26,31 @@ const SearchResults = ({searchResults}) => {
     }
 
     return (
+
         <div>
-            {searchResults.map((truck) => {
-                return (
-                    <div key={truck.objectid} className={`block w-full rounded-lg ${getColor(truck.status)} text-left my-4`}>
-                        <div className="p-6">
-                            <p className="text-base text-neutral-600 font-bold">
-                                {truck.applicant}
-                            </p>
-                            <p className="text-base text-neutral-600">
-                                {truck.address}
-                            </p>
-                            <p className="text-base text-neutral-600">
-                                {truck.fooditems}
-                            </p>
-                            <p className="text-base text-neutral-600">
-                                {truck.status}
-                            </p>
+            {searchResults.length ? (
+                searchResults.map((truck) => {
+                    return (
+                        <div key={truck.objectid} className={`block w-full rounded-lg ${getColor(truck.status)} text-left my-4`}>
+                            <div className="p-6">
+                                <p className="text-base text-neutral-600 font-bold">
+                                    {truck.applicant}
+                                </p>
+                                <p className="text-base text-neutral-600">
+                                    {truck.address}
+                                </p>
+                                <p className="text-base text-neutral-600">
+                                    {truck.fooditems}
+                                </p>
+                                <p className="text-base text-neutral-600">
+                                    {truck.status}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                )
-            })}
+                    )
+                })
+            ) : <div>No results.</div>}
+
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import MapContainer from "./MapContainer";
 import SearchResults from "./SearchResults";
 import SearchForm from "./SearchForm";
 import axios from 'axios';
